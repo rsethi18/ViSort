@@ -440,51 +440,8 @@ function* cocktailShakerSort(a) {
   yield { type: "done" };
 }
 
-// 9) Counting Sort (for non-negative integers only)
-function* countingSort(a) {
-  // Map values to a range suitable for counting sort (0-canvas.height)
-  let min = Math.min(...a);
-  let max = Math.max(...a);
-  let range = max - min + 1;
-  
-  // Create count array and output array
-  let count = new Array(range).fill(0);
-  let output = new Array(a.length);
-  
-  // Count occurrences of each value
-  for (let i = 0; i < a.length; i++) {
-    let value = Math.floor(a[i] - min);
-    count[value]++;
-    metrics.steps++;
-    yield { type: "count", index: i };
-  }
-  
-  // Calculate cumulative count
-  for (let i = 1; i < count.length; i++) {
-    count[i] += count[i - 1];
-    metrics.steps++;
-  }
-  
-  // Build the output array
-  for (let i = a.length - 1; i >= 0; i--) {
-    let value = Math.floor(a[i] - min);
-    output[count[value] - 1] = a[i];
-    count[value]--;
-    metrics.swaps++;
-    yield { type: "assign", index: i };
-  }
-  
-  // Copy the output array to original array
-  for (let i = 0; i < a.length; i++) {
-    a[i] = output[i];
-    metrics.swaps++;
-    yield { type: "assign", index: i };
-  }
-  
-  yield { type: "done" };
-}
 
-// 10) Radix Sort (for non-negative integers)
+// 9) Radix Sort (for non-negative integers)
 function* radixSort(a) {
   // Find the number of digits in the maximum element
   let max = Math.max(...a);
@@ -600,8 +557,6 @@ startBtn.addEventListener("click", () => {
     sortGen = shellSort(arr);
   } else if (algo === "Cocktail Shaker Sort") {
     sortGen = cocktailShakerSort(arr);
-  } else if (algo === "Counting Sort") {
-    sortGen = countingSort(arr);
   } else if (algo === "Radix Sort") {
     sortGen = radixSort(arr);
   }
@@ -659,11 +614,6 @@ theoryBtn.addEventListener("click", () => {
       description: "A bidirectional bubble sort that sorts in both directions on each pass.",
       time: "O(n²)",
       space: "O(1)"
-    },
-    "Counting Sort": {
-      description: "Counts occurrences of each value and uses arithmetic to determine positions (non-comparison based).",
-      time: "O(n + k)",
-      space: "O(k)"
     },
     "Radix Sort": {
       description: "Sorts numbers digit by digit using a stable sort as a subroutine.",
