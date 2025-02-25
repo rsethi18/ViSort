@@ -1,13 +1,3 @@
-/******************************************************
-  Sorting Algorithm Visualizer App (scripts2.js)
-  -----------------------------------------
-  This app visualizes 10 sorting algorithms with interactive
-  controls to adjust array size, speed, and algorithm selection.
-  Real-time performance metrics (comparisons, swaps, steps) are
-  displayed. Clicking the "Theory" button opens a modal with
-  details on the selected algorithm.
-******************************************************/
-
 // Global variables
 let canvas, ctx;
 let arr = [];
