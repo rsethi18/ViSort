@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithm Visualizer | Interactive Sorting</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Montserrat & Poppins fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Controls Panel -->
+    <div class="controls">
+      <div class="header-content">
+        <h1><i class="fas fa-chart-bar"></i> ViSort</h1>
+        <p class="subtitle">Interactive algorithm visualization</p>
+      </div>
+      
+      <div class="control-group">
+        <label for="arraySize">
+          <i class="fas fa-layer-group"></i> Array Size:
+          <span class="value-display" id="arraySizeDisplay">50</span>
+        </label>
+        <input type="range" id="arraySize" min="10" max="200" value="50">
+      </div>
+      
+      <div class="control-group">
+        <label for="speed">
+          <i class="fas fa-tachometer-alt"></i> Visualization Speed:
+          <span class="value-display" id="speedDisplay">5</span>
+        </label>
+        <input type="range" id="speed" min="1" max="20" value="5">
+      </div>
+      
+      <div class="control-group">
+        <label for="algorithm">
+          <i class="fas fa-code"></i> Algorithm:
+        </label>
+        <select id="algorithm">
+          <option>Bubble Sort</option>
+          <option>Insertion Sort</option>
+          <option>Selection Sort</option>
+          <option>Merge Sort</option>
+          <option>Quick Sort</option>
+          <option>Heap Sort</option>
+          <option>Shell Sort</option>
+          <option>Cocktail Shaker Sort</option>
+          <option>Counting Sort</option>
+          <option>Radix Sort</option>
+        </select>
+      </div>
+      
+      <div class="control-group buttons">
+        <button id="startBtn" class="btn-primary">
+          <i class="fas fa-play"></i> Start Sort
+        </button>
+        <button id="resetBtn" class="btn-secondary">
+          <i class="fas fa-redo"></i> Reset Array
+        </button>
+        <button id="theoryBtn" class="btn-tertiary">
+          <i class="fas fa-book"></i> Theory
+        </button>
+      </div>
+      
+      <div class="metrics">
+        <h3><i class="fas fa-chart-line"></i> Performance Metrics</h3>
+        <p id="comparisons">Comparisons: <span>0</span></p>
+        <p id="swaps">Swaps: <span>0</span></p>
+        <p id="steps">Steps: <span>0</span></p>
+      </div>
+      
+      <div class="footer">
+        <p>Visualize and learn about sorting algorithms</p>
+      </div>
+    </div>
+    
+    <!-- Visualizer Canvas -->
+    <div class="visualizer">
+      <canvas id="sortCanvas"></canvas>
+      <div class="canvas-overlay">
+        <div class="algo-name" id="currentAlgo">Select an algorithm</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theory Modal -->
+  <div id="theoryModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <div id="theoryContent">
+        <!-- Theory content is inserted dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
